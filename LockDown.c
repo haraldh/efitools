@@ -26,12 +26,12 @@ efi_main (EFI_HANDLE image, EFI_SYSTEM_TABLE *systab)
 
 	if (efi_status != EFI_SUCCESS) {
 		Print(L"No SetupMode variable ... is platform secure boot enabled?\n");
-		return EFI_SUCCESS;
+		return efi_status;
 	}
 
 	if (!SetupMode) {
 		Print(L"Platform is not in Setup Mode, cannot install Keys\n");
-		return EFI_SUCCESS;
+		return EFI_SECURITY_VIOLATION;
 	}
 
 	Print(L"Platform is in Setup Mode\n");
